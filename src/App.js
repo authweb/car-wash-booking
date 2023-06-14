@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import { Routes, Route } from 'react-router-dom';
+import { Container, Grid } from '@material-ui/core';
+import {
+  BookingForm,
+  ServiceList,
+  ClientList,
+  EmployeeList,
+  Sidebar,
+  Header,
+  Calendar,
+} from './components/';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="xl">
+      <Header />
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={3}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <Routes>
+            <Route exact path="/" element={<Calendar />} />
+            <Route path="/employees" element={<EmployeeList />} />
+            <Route path="/clients" element={<ClientList />} />
+            <Route path="/services" element={<ServiceList />} />
+            <Route path="/booking" element={<BookingForm />} />
+          </Routes>
+        </Grid>
+      </Grid>
+    </Container>
   );
-}
+};
 
 export default App;
